@@ -1,0 +1,4 @@
+select *,timestampdiff(day,temporada_inicio,temporada_final) as dias_duracion,
+timestampdiff(month,temporada_inicio,temporada_final) as meses_duracion,
+timestampdiff(year,temporada_inicio,temporada_final) as años_duracion
+from clima
