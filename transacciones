@@ -1,0 +1,35 @@
+create database regsitros;
+create table regsitros.Cuenta (
+id int primary key  auto_increment not null,
+nombre varchar(45) not null,
+email varchar(100) not null,
+monto int unsigned);
+
+
+
+insert into cuenta (nombre, email, monto) values ("brayan", "brayan@gmail.com", 500000),
+												("jhonathan", "jhonatahn@gmail.com", 1000000);
+select *
+from Cuenta
+
+
+
+delimiter //
+create procedure Agergar_monto (in id_usuario int, in agregar int)
+begin
+declare exit handler for 1690
+begin 
+select "la cuenta no puede quedar en valores negativos";
+rollback;
+end;
+start transaction;
+update cuenta set monto = monto + agregar where id = id_usuario;
+commit;
+end;
+//
+
+
+
+call Agergar_monto(1,500000);
+select *
+from cuenta
